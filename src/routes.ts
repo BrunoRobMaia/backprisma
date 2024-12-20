@@ -2,6 +2,7 @@ import { Router } from "express";
 import { createCompanyController } from "./useCases/CreateCompany";
 import { createUserController } from "./useCases/CreateUser";
 import { authenticateController } from "./useCases/Authenticate";
+import { editUserController } from "./useCases/EditUser";
 
 export const Routes = () => {
   const router = Router();
@@ -12,10 +13,11 @@ export const Routes = () => {
   router.post("/user", async (request, response) => {
     return createUserController.handle(request, response);
   });
+  router.put("/user/:id", async (request, response) => {
+    return editUserController.handle(request, response);
+  });
   router.post("/session", async (request, response) => {
     return authenticateController.handle(request, response);
   });
-
-
   return router;
 };
