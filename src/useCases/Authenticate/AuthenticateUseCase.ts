@@ -11,13 +11,11 @@ export class AuthenticateUseCase {
       throw new Error('Campo obrigatório: email');
     }
 
-    // Verifica se o usuário existe
     const user = await this.userRepository.findByEmail(data.email);
     if (!user) {
       throw new Error('Usuário não encontrado');
     }
 
-    // Gera uma chave dinâmica de 32 bytes (segura)
     const secret = crypto.randomBytes(32).toString('hex');
 
     const token = jwt.sign(
