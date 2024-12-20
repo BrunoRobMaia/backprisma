@@ -44,4 +44,11 @@ export class MySqlIUserRepository implements IUserRepository {
         });
       console.log("Usuário deletado", updateUser.name);
     }
+    async findByEmail(email: string): Promise<User | null> {
+      const userExists = await prismaClient.user.findUnique({
+        where: { email }
+      });
+  
+      return userExists;
+    }
 }

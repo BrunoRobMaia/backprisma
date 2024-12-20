@@ -5,4 +5,5 @@ export interface IUserRepository {
   save(user: Omit<User, 'id'>): Promise<User>;
   update(id: number, user: Partial<User>): Promise<void>;
   delete(id: number): Promise<void>;
+  findByEmail(email: string): Promise<User | null>;
 }
